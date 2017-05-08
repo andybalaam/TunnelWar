@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">TunnelWar</string>
+    <string name="choose_players">Choose players</string>
+    <string name="start">Start</string>
+    <string name="red_1">Red 1:</string>
+    <string name="red_2">Red 2:</string>
+    <string name="red_3">Red 3:</string>
+    <string name="red_4">Red 4:</string>
+    <string name="green_1">Green 1:</string>
+    <string name="green_2">Green 2:</string>
+    <string name="green_3">Green 3:</string>
+    <string name="green_4">Green 4:</string>
+    <string-array name="player_types">
+        <item>Disabled</item>
+        <item>AI</item>
+        <item>Human</item>
+    </string-array>
+    <string name="title_activity_game">GameActivity</string>
+</resources>

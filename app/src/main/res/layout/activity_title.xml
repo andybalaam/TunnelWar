@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context="net.artificialworlds.tunnelwar.TitleActivity">
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="startClicked"
+        android:text="@string/start"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/choosePlayersTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_players"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.103" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="229dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="40dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choosePlayersTextView"
+        app:layout_constraintVertical_bias="0.503">
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="0.5">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/red1TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/red_1"
+                    android:textSize="24sp" />
+
+                <Spinner
+                    android:id="@+id/red1Spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:addStatesFromChildren="false"
+                    android:baselineAligned="false"
+                    android:entries="@array/player_types" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/red2TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/red_2"
+                    android:textSize="24sp" />
+
+                <Spinner
+                    android:id="@+id/red2Spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:addStatesFromChildren="false"
+                    android:entries="@array/player_types" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/red3TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/red_3"
+                    android:textSize="24sp" />
+
+                <Spinner
+                    android:id="@+id/red3Spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:addStatesFromChildren="false"
+                    android:entries="@array/player_types" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/red4TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/red_4"
+                    android:textSize="24sp" />
+
+                <Spinner
+                    android:id="@+id/red4Spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:addStatesFromChildren="false"
+                    android:entries="@array/player_types" />
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/green1TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/green_1"
+                    android:textSize="24sp" />
+
+                <Spinner
+                    android:id="@+id/green1Spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:addStatesFromChildren="false"
+                    android:entries="@array/player_types" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/green2TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/green_2"
+                    android:textSize="24sp" />
+
+                <Spinner
+                    android:id="@+id/green2Spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:addStatesFromChildren="false"
+                    android:entries="@array/player_types" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/green3TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/green_3"
+                    android:textSize="24sp" />
+
+                <Spinner
+                    android:id="@+id/green3Spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:addStatesFromChildren="false"
+                    android:entries="@array/player_types" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/green4TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/green_4"
+                    android:textSize="24sp" />
+
+                <Spinner
+                    android:id="@+id/green4Spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:addStatesFromChildren="false"
+                    android:entries="@array/player_types" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
