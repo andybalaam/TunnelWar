@@ -3,18 +3,20 @@ package net.artificialworlds.tunnelwar;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
 
 class ActuallyDrawGraphics
 {
-    static Paint paint = new Paint();
-    static
+    private static Paint paint = makePaint();
+
+    private static Paint makePaint()
     {
-        paint.setColor(Color.WHITE);
-        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        Paint ret = new Paint();
+        ret.setColor(Color.WHITE);
+        ret.setStyle(Paint.Style.FILL_AND_STROKE);
+        return ret;
     }
 
-    public static void actuallyDrawGraphics(VisRep visRep, Canvas canvas)
+    static void actuallyDrawGraphics(VisRep visRep, Canvas canvas)
     {
         ScreenSize canvasSize = new ScreenSize(canvas.getWidth(), canvas.getHeight());
         canvas.drawColor(Color.BLACK);
