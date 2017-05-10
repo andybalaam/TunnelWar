@@ -22,13 +22,14 @@ class GameEngine
         @Override
         public void run()
         {
-            Model model = InitialModel.initialModel(enabledPlayers);
+            RandomNumbers random = new RealRandomNumbers();
+            Model model = InitialModel.initialModel(enabledPlayers, random);
             DrawGraphics drawGraphics = new DrawGraphics(surfaceHolder);
 
             while (running)
             {
                 Input input = ProcessInput.processInput();
-                model = Update.update(model, input, InitialModel.gameTimeNow());
+                model = Update.update(model, input, InitialModel.gameTimeNow(), random);
                 drawGraphics.drawGraphics(MakeVisRep.makeVisRep(model));
                 waitForNextFrame(model);
             }

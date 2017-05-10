@@ -8,7 +8,7 @@ import java.util.List;
 final class Model
 {
     final static GameCoord topLeft = new GameCoord(0, 0);
-    final static GameCoord bottomRight = new GameCoord(100, 100);
+    private final static GameCoord bottomRight = new GameCoord(100, 100);
     final static GameSize size = bottomRight.minus(topLeft);
 
     static final class GameTime
@@ -64,12 +64,12 @@ final class Model
             this.y = y;
         }
 
-        public GameSize minus(GameCoord other)
+        GameSize minus(GameCoord other)
         {
             return new GameSize(x - other.x, y - other.y);
         }
 
-        public GameCoord minus(GameSize other)
+        GameCoord minus(GameSize other)
         {
             return new GameCoord(x - other.w, y - other.h);
         }
@@ -91,7 +91,7 @@ final class Model
             this.h = h;
         }
 
-        public GameSize dividedBy(double scalar)
+        GameSize dividedBy(double scalar)
         {
             return new GameSize(w / scalar, h / scalar);
         }
@@ -137,6 +137,29 @@ final class Model
 
     static final class Tunnel
     {
+        static final class Segment
+        {
+            final double topY;
+            final double bottomY;
+            final double x;
+
+            Segment(double x, double topY, double bottomY)
+            {
+                this.x = x;
+                this.topY = topY;
+                this.bottomY = bottomY;
+            }
+        }
+
+        final List<Segment> segments;
+        final double newSegmentGap;
+
+        Tunnel(List<Segment> segments, double newSegmentGap)
+        {
+            this.segments = segments;
+            this.newSegmentGap = newSegmentGap;
+        }
+
     }
 
     final List<Player> players;
