@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class FunctionUtils
 {
@@ -47,6 +48,52 @@ public class FunctionUtils
 
     }
 
+    public static <T> Iterable<T> take(final int howMany, final Iterable<T> input)
+    {
+        return new Iterable<T>()
+        {
+            @Override
+            public Iterator<T> iterator()
+            {
+                class Holder
+                {
+                    int n = 0;
+                }
+
+                final Iterator<T> inputIterator = input.iterator();
+                final Holder n = new Holder();
+
+                return new Iterator<T>()
+                {
+                    @Override
+                    public boolean hasNext()
+                    {
+                        return inputIterator.hasNext() && n.n < howMany;
+                    }
+
+                    @Override
+                    public T next()
+                    {
+                        ++n.n;
+                        if (n.n <= howMany)
+                        {
+                            return inputIterator.next();
+                        }
+                        else
+                        {
+                            throw new NoSuchElementException();
+                        }
+                    }
+
+                    @Override
+                    public void remove()
+                    {
+                        throw new UnsupportedOperationException();
+                    }
+                };
+            }
+        };
+    }
 
     public static List<Object> list()
     {
