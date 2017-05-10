@@ -1,5 +1,13 @@
 package net.artificialworlds.tunnelwar;
 
+import net.artificialworlds.tunnelwar.Model.GameCoord;
+import net.artificialworlds.tunnelwar.Model.GameSize;
+import net.artificialworlds.tunnelwar.Model.GameTime;
+import net.artificialworlds.tunnelwar.Model.Player;
+
+import static net.artificialworlds.tunnelwar.FunctionUtils.list;
+import static net.artificialworlds.tunnelwar.FunctionUtils.map;
+
 class Update
 {
     private static final int max_allowed_skips = 10;
@@ -24,10 +32,22 @@ class Update
     private static Model updateOnce(Model model, Input input)
     {
         return new Model(
-            model.players,
+            list(map(movePlayer(model.time), model.players)),
             model.bullets,
             model.tunnel,
             model.time.plus(time_step)
         );
+    }
+
+    private static FunctionUtils.Function<Player, Player> movePlayer(final GameTime time)
+    {
+        return new FunctionUtils.Function<Player, Player>()
+        {
+            @Override
+            public Player apply(Player player)
+            {
+                return new Player(new GameCoord(50 + 20 * Math.sin(time.millis / 100.0), 50), player.vel, player.state);
+            }
+        };
     }
 }

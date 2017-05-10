@@ -25,7 +25,7 @@ class ActuallyDrawGraphics
         {
             ScreenCoord topLeft = game2Screen(rect.topLeft, canvasSize);
             ScreenSize size = game2Screen(rect.size, canvasSize);
-            canvas.drawRect(topLeft.x, topLeft.y, topLeft.x + size.w, topLeft.x + size.h, paint);
+            canvas.drawRect(topLeft.x, topLeft.y, topLeft.x + size.w, topLeft.y + size.h, paint);
         }
     }
 

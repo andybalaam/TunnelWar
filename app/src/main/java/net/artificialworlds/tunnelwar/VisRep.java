@@ -1,5 +1,9 @@
 package net.artificialworlds.tunnelwar;
 
+import java.util.List;
+
+import static net.artificialworlds.tunnelwar.FunctionUtils.list;
+
 class VisRep
 {
     final Rect[] rects;
@@ -9,6 +13,17 @@ class VisRep
     {
         this.rects = rects;
         this.polys = polys;
+    }
+
+    public VisRep(Iterable<Rect> rects, Iterable<Poly> polys)
+    {
+        // In a sane world, this constructor would not exist
+
+        List<Rect> listRects = list(rects);
+        List<Poly> listPolys = list(polys);
+
+        this.rects = listRects.toArray(new Rect[listRects.size()]);
+        this.polys = listPolys.toArray(new Poly[listPolys.size()]);
     }
 
     static final class Rect

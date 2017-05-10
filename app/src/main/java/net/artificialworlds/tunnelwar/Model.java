@@ -68,6 +68,16 @@ final class Model
         {
             return new GameSize(x - other.x, y - other.y);
         }
+
+        public GameCoord minus(GameSize other)
+        {
+            return new GameCoord(x - other.w, y - other.h);
+        }
+
+        public GameCoord plus(GameSize other)
+        {
+            return new GameCoord(x + other.w, y + other.h);
+        }
     }
 
     static final class GameSize
@@ -79,6 +89,11 @@ final class Model
         {
             this.w = w;
             this.h = h;
+        }
+
+        public GameSize dividedBy(double scalar)
+        {
+            return new GameSize(w / scalar, h / scalar);
         }
     }
 
