@@ -2,6 +2,7 @@ package net.artificialworlds.tunnelwar;
 
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 
@@ -88,5 +89,28 @@ public class FunctionUtilsTest
         };
 
         assertThat(list(take(5, allNumbers)), equalTo(list(0, 1, 2, 3, 4)));
+    }
+
+    @Test
+    public void Flattening_an_empty_list_gives_empty_list()
+    {
+        assertThat(list(flatten(Collections.<Iterable<Object>>emptyList())), equalTo(list()));
+    }
+
+    @Test
+    public void Flattening_a_list_containing_lists_produces_a_list()
+    {
+        assertThat(
+            list(
+                flatten(
+                    list(
+                        (Iterable<Integer>)list(1, 2),
+                        Collections.<Integer>emptyList(),
+                        list(3, 4)
+                    )
+                )
+            ),
+            equalTo(list(1, 2, 3, 4))
+        );
     }
 }

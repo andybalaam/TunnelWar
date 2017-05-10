@@ -7,14 +7,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class FunctionUtils
+class FunctionUtils
 {
-    public static interface Function<T, R>
+    interface Function<T, R>
     {
         R apply(T t);
     }
 
-    public static <T, R> Iterable<R> map(final Function<T, R> fun, final Iterable<T> input)
+    static <T, R> Iterable<R> map(final Function<T, R> fun, final Iterable<T> input)
     {
         return new Iterable<R>()
         {
@@ -48,7 +48,7 @@ public class FunctionUtils
 
     }
 
-    public static <T> Iterable<T> take(final int howMany, final Iterable<T> input)
+    static <T> Iterable<T> take(final int howMany, final Iterable<T> input)
     {
         return new Iterable<T>()
         {
@@ -95,12 +95,100 @@ public class FunctionUtils
         };
     }
 
-    public static List<Object> list()
+    static <T> Iterable<T> flatten(final Iterable<Iterable<T>> input)
+    {
+        class MaybeT
+        {
+            final T t;
+            final boolean exists;
+
+            MaybeT(T t)
+            {
+                this.t = t;
+                exists = true;
+            }
+
+            private MaybeT()
+            {
+                this.t = null;
+                exists = false;
+            }
+        }
+
+        final MaybeT NONE = new MaybeT();
+
+        return new Iterable<T>()
+        {
+            @Override
+            public Iterator<T> iterator()
+            {
+                return new Iterator<T>()
+                {
+                    Iterator<Iterable<T>> outer = input.iterator();
+                    Iterator<T> inner = null;
+                    MaybeT nextT = findNext();
+
+                    private MaybeT findNext()
+                    {
+                        try
+                        {
+                            return doFindNext();
+                        }
+                        catch (NoSuchElementException e)
+                        {
+                            return NONE;
+                        }
+                    }
+
+                    private MaybeT doFindNext()
+                    {
+                        while (inner == null || !inner.hasNext())
+                        {
+                            if (!outer.hasNext())
+                            {
+                                return NONE;
+                            }
+
+                            inner = outer.next().iterator();
+                        }
+
+                        return new MaybeT(inner.next());
+                    }
+
+                    @Override
+                    public boolean hasNext()
+                    {
+                        return nextT.exists;
+                    }
+
+                    @Override
+                    public T next()
+                    {
+                        MaybeT ret = nextT;
+                        if (!ret.exists)
+                        {
+                            throw new NoSuchElementException();
+                        }
+                        nextT = findNext();
+                        return ret.t;
+                    }
+
+                    @Override
+                    public void remove()
+                    {
+                        throw new UnsupportedOperationException();
+                    }
+                };
+            }
+        };
+    }
+
+    static List<Object> list()
     {
         return Collections.emptyList();
     }
 
-    public static <T> List<T> list(Iterable<T> inputs)
+    static <T> List<T> list(Iterable<T> inputs)
     {
         ArrayList<T> ret = new ArrayList<>();
         for (T t : inputs)
@@ -110,7 +198,8 @@ public class FunctionUtils
         return ret;
     }
 
-    public static <T> List<T> list(T... inputs)
+    @SafeVarargs
+    static <T> List<T> list(T... inputs)
     {
         return Arrays.asList(inputs);
     }
