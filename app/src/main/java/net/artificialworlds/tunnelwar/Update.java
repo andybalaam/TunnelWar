@@ -66,6 +66,18 @@ class Update
             segments.remove(0);
             segments.add(InitialModel.makeSegment(lastSegment, tunnel.newSegmentGap, random));
         }
+        else if (
+            segments.get(segments.size() - 1).x
+            > (segments.size() + 1) * InitialModel.segment_width
+        )
+        {
+            Segment firstSegment = segments.get(0);
+            segments.remove(segments.size() - 1);
+            segments.add(
+                0,
+                InitialModel.makeSegment(firstSegment, tunnel.newSegmentGap, random, -1)
+            );
+        }
 
         double newGap = tunnel.newSegmentGap * (1 - (0.00001 * time_step.millis));
         if (newGap < min_gap_size)

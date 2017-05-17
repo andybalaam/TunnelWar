@@ -89,8 +89,16 @@ class InitialModel
         };
     }
 
-    static Segment makeSegment(
-        Segment oldSegment, double gap, RandomNumbers random
+    static Segment makeSegment(Segment oldSegment, double gap, RandomNumbers random)
+    {
+        return makeSegment(oldSegment, gap, random, 1);
+    }
+
+    public static Segment makeSegment(
+        Segment oldSegment,
+        double gap,
+        RandomNumbers random,
+        int direction
     )
     {
         double change = (random.nextDouble() * max_segment_change * 2) - max_segment_change;
@@ -99,6 +107,6 @@ class InitialModel
         {
             newTopY = oldSegment.topY - change;
         }
-        return new Segment(oldSegment.x + segment_width, newTopY, newTopY + gap);
+        return new Segment(oldSegment.x + (segment_width * direction), newTopY, newTopY + gap);
     }
 }

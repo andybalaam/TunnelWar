@@ -9,8 +9,9 @@ import java.util.Map;
 
 class ActuallyDrawGraphics
 {
-    // To allow us to draw slightly-off-screen
-    private static final double horizontal_stretch = 1.01;
+    // To allow us to draw slightly over the edges of the screen
+    private static final double horizontal_offset = -0.02;
+    private static final double horizontal_stretch = 1.04;
 
     private static Map<VisRep.Color, Paint> paints = makePaints();
 
@@ -52,7 +53,8 @@ class ActuallyDrawGraphics
     private static ScreenCoord game2Screen(Model.GameCoord topLeft, ScreenSize screenSize)
     {
         Model.GameSize relativeTopLeft = topLeft.minus(Model.topLeft);
-        double x = horizontal_stretch * screenSize.w * (relativeTopLeft.w / Model.size.w);
+        double proportionX = relativeTopLeft.w / Model.size.w;
+        double x = horizontal_stretch * screenSize.w * (horizontal_offset + proportionX);
         double y = screenSize.h * (relativeTopLeft.h / Model.size.h);
         return new ScreenCoord((int)x, (int)y);
     }
